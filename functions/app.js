@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-router.post("/answer", async (req, res) => {
+app.post("/answer", async (req, res) => {
   const { question } = req.body;
   const answer = await getAnswer(question);
   res.status(200).send(JSON.stringify({response: answer}));
