@@ -1,0 +1,1 @@
+import*as model from"./model.js";import*as View from"./View.js";import*as config from"/config.js";async function generateResponse(e,t){config.text.textPosition=0,e.textContent="";const o=t.value.trim(),n=JSON.stringify({question:o}),{response:i}=await model.callGPT(n);View.typing(i,i.length)}View.createResponseListener(generateResponse);
