@@ -1,4 +1,4 @@
-import * as config from "/config.js";
+import * as config from "./config.js";
 
 const body = document.querySelector("body");
 const textBox = document.querySelector(".question--textbox");
@@ -11,6 +11,13 @@ sendBtn.style.color = "#6b6c7b";
 export const createResponseListener = function (responseHandler) {
   textBox.addEventListener("keydown", function (e) {
     if (e.keyCode === 13) {
+      chatgptLogo.style.opacity = 100;
+      e.preventDefault();
+      responseHandler(responseArea, textBox);
+    }
+  });
+  sendBtnContainer.addEventListener("click", function (e) {
+    if (e.target.closest('.send-btn--container')) {
       chatgptLogo.style.opacity = 100;
       e.preventDefault();
       responseHandler(responseArea, textBox);
@@ -36,7 +43,7 @@ textBox.addEventListener("input", event => {
     sendBtn.style.color = "#6b6c7b";
   } else {
     sendBtnContainer.style.backgroundColor = "#19c37d";
-    sendBtn.style.color = "white";
+    sendBtn.style.color = "rgb(241, 241, 241)";
   }
 });
 
