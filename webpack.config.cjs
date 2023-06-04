@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./controller.js", // Path to your main JavaScript file
+  entry: "/public/controller.js", // Path to your main JavaScript file
   output: {
     filename: "bundle.js", // Name of the output bundle file
     path: path.resolve(__dirname, "dist"), // Output directory
@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html", // Path to your HTML file
+      template: "/public/index.html", // Path to your HTML file
       filename: "index.html", // Output HTML filename
     }),
   ],

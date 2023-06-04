@@ -13,7 +13,7 @@
   <title>OneWordGPT: One word answers from ChatGPT</title>
 </head>
 <body>
-  <div class="homescreen-logo--container"><img class="homescreen-logo" src="images/chatgptLogo.jpg" alt="Image"></div>
+  <div class="homescreen-logo--container"><img class="homescreen-logo" src="/images/chatgptLogo.jpg" alt="Image"></div>
   <section class="master--container">
     <h1 class="title">OneWordGPT</h1>
     <div class="text-area--container">
@@ -26,17 +26,4 @@
   </div>
   <div class="warning-text--container">Free Research Preview. OneWordGPT may produce inaccurate information about people, places, or facts.</div>
 </body>
-<script>
-  const tx = document.getElementsByTagName("textarea");
-  for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-  tx[i].addEventListener("input", OnInput, false);
-  }
-
-  function OnInput() {
-    this.style.height = 0;
-    this.style.height = (this.scrollHeight) + "px";
-  }
-
-</script>
 </html>

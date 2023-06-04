@@ -1,5 +1,5 @@
-import * as model from './model.js';
-import * as View from './View.js';
+import * as model from '/model.js';
+import * as View from '/View.js';
 import * as config from '/config.js';
 
 
