@@ -156,6 +156,7 @@ body {
   .question--textbox {
     width: 90vw;
     font-size: 0.95em;
+    line-height: 0.95em;
   }
 }
 

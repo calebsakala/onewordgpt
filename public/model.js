@@ -1,10 +1,12 @@
+import * as config from "../config.js";
+
 /**
  *
  * @param { Object } questionData an object formatted as { question: 'string' }
  * @returns { String } a string of text from ChatGPT
  */
 export async function callGPT(questionData) {
-  const data = await fetch("https://onewordgpt2.ue.r.appspot.com/answer", {
+  const data = await fetch(config.API_ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

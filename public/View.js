@@ -1,4 +1,4 @@
-import * as config from "./config.js";
+import * as config from "../config.js";
 
 const body = document.querySelector("body");
 const textBox = document.querySelector(".question--textbox");
@@ -17,7 +17,7 @@ export const createResponseListener = function (responseHandler) {
     }
   });
   sendBtnContainer.addEventListener("click", function (e) {
-    if (e.target.closest('.send-btn--container')) {
+    if (e.target.closest(".send-btn--container")) {
       chatgptLogo.style.opacity = 100;
       e.preventDefault();
       responseHandler(responseArea, textBox);

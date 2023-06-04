@@ -7,6 +7,9 @@ import mime from "mime";
 import cors from "cors";
 import { getAnswer } from "./getAnswer.js";
 import helmet from "helmet";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = normalizePort(process.env.PORT || 8080);
