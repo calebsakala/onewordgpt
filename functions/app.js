@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 const port = normalizePort(process.env.PORT || 8080);
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
 
 app.use((req, res, next) => {
   const mimeType = mime.getType(req.path);
@@ -69,6 +69,7 @@ app.use(express.static('public'));
 
 app.post("/answer", async (req, res) => {
   const { question } = req.body;
+
   const answer = await getAnswer(question);
   res.status(200).send(JSON.stringify({ response: answer }));
 });

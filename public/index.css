@@ -33,7 +33,6 @@ body {
 
 .homescreen-logo {
   height: 2em;
-  /* border-radius: 0.9em; */
   background-color: rgb(32, 32, 32);
   transition: 0.4s all;
 }
@@ -109,6 +108,7 @@ body {
   display: flex;
   align-items: center;
   align-self: flex-start;
+  margin-top: 0.3em;
 }
 
 
@@ -116,7 +116,6 @@ body {
   max-width: 2.1em;
   border-radius: 0.25em;
   margin-right: 1em; 
-  margin-left: 9vw;
   opacity: 0;
   transition: 0.4s all;
 }
@@ -139,6 +138,37 @@ body {
   font-size: 10px;
 }
 
+.response--container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.chatgpt-response {
+  display: flex;
+}
+
+.blinker {
+  opacity: 0;
+}
+
+.blinker.active {
+  opacity: 1;
+  height: 1.13em;
+  animation: blink-caret 0.75s infinite;
+  /* box-shadow: 0 0 2px 2px rgb(255, 255, 255);  */
+  padding-left: 5px;
+  margin-bottom: 0.13em;
+  text-align: center;
+  background-color: white;
+  color: transparent;
+}
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
+}
 
 /* Small Mobile Devices */
 @media only screen and (max-width: 360px) {
@@ -181,13 +211,6 @@ body {
   }
 }
 
-@media only screen and (min-width: 980px) and (max-width: 1025px) {
-  .response--section {
-    align-self: center;
-    margin-right: 770px;
-  }
-}
-
 /* Medium-sized Laptops and Desktops */
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   /* Styles for medium-sized laptops and desktops */
@@ -196,8 +219,6 @@ body {
   }
 
   .response--section {
-    align-self: center;
-    margin-right: 770px;
     font-size: 1.22em;
   }
 
@@ -225,8 +246,7 @@ body {
   }
 
   .response--section {
-    align-self: center;
-    margin-right: 850px;
+    font-size: 1.3em;
   }
 
   .question--textbox {
@@ -237,10 +257,6 @@ body {
 
   .material-symbols-outlined {
     font-size: 1.5em;
-  }
-
-  .response--section {
-    font-size: 1.3em;
   }
 
   .warning-text--container  {

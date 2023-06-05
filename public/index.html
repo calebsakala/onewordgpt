@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="index.css">
   <link rel="icon" type="image/png" href="./images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="./images/favicon-16x16.png" sizes="16x16" />
-  <script src="controller.js" type="module" defer></script>
+  <script src="./controller.js" type="module" defer></script>
   <title>OneWordGPT: One word answers from ChatGPT</title>
 </head>
 <body>
@@ -21,11 +21,15 @@
     <div class="text-area--container">
       <textarea maxlength="200" placeholder="Get a one-word response from ChatGPT" class="question--textbox"></textarea>
       <div class="send-btn--container"><span class="material-symbols-outlined">send</span></div>
+    </div>
+    <section class="response--section">
+      <img class="chatgpt-logo" src="images/chatgptLogo.jpg" alt="Image">
+      <div class="response--container">
+        <p class="chatgpt-response"></p>
+        <span class="blinker">|</span>
+      </div>
     </section>
-  <div class="response--section">
-    <img class="chatgpt-logo" src="images/chatgptLogo.jpg" alt="Image">
-    <p class="chatgpt-response"></p> 
-  </div>
+  </section>
   <div class="warning-text--container">Free Research Preview. One-wordGPT may produce inaccurate information about people, places, or facts.</div>
 </body>
 </html>

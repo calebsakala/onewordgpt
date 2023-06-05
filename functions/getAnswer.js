@@ -17,6 +17,6 @@ export async function getAnswer(prompt) {
 
   const gptResponse = data.choices[0].message.content;
 
-  if (gptResponse.split(' ').length > 5) return "I can't.";
+  if (gptResponse.split(' ').length > 5) return "Sorry :(";
   if (gptResponse.split(' ').length < 5) return gptResponse;
 }

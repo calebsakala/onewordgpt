@@ -1,4 +1,4 @@
-import * as config from "../config.js";
+import * as config from "./config.js";
 
 const body = document.querySelector("body");
 const textBox = document.querySelector(".question--textbox");
@@ -6,33 +6,49 @@ const responseArea = document.querySelector(".chatgpt-response");
 const sendBtnContainer = document.querySelector(".send-btn--container");
 const sendBtn = document.querySelector(".material-symbols-outlined");
 const chatgptLogo = document.querySelector(".chatgpt-logo");
+const blinker = document.querySelector(".blinker");
 sendBtn.style.color = "#6b6c7b";
 
 export const createResponseListener = function (responseHandler) {
   textBox.addEventListener("keydown", function (e) {
     if (e.keyCode === 13) {
-      chatgptLogo.style.opacity = 100;
       e.preventDefault();
-      responseHandler(responseArea, textBox);
+      responseHandler(responseArea, textBox, blinker, chatgptLogo);
     }
   });
   sendBtnContainer.addEventListener("click", function (e) {
     if (e.target.closest(".send-btn--container")) {
-      chatgptLogo.style.opacity = 100;
       e.preventDefault();
-      responseHandler(responseArea, textBox);
+      responseHandler(responseArea, textBox, blinker, chatgptLogo);
     }
   });
 };
 
-export function typing(response, answerLength) {
-  if (config.text.textPosition >= answerLength) return;
+// export function typing(response, answerLength) {
+//   if (config.text.textPosition >= answerLength) return;
 
-  responseArea.textContent += response[config.text.textPosition];
+//   responseArea.textContent += response[config.text.textPosition];
+
+//   config.text.textPosition++;
+
+//   setTimeout(typing, config.text.speed, response, answerLength);
+// }
+
+
+export function typing(response, answerLength) {
+
+  if (config.text.textPosition > answerLength) {
+    setTimeout(() => blinker.classList.remove("active"), 250);
+    return;
+  }
+
+  responseArea.textContent += response.charAt(config.text.textPosition);
 
   config.text.textPosition++;
 
-  setTimeout(typing, config.text.speed, response, answerLength);
+  setTimeout(() => {
+    typing(response, answerLength);
+  }, config.text.speed);
 }
 
 textBox.addEventListener("input", event => {
