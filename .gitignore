@@ -1,3 +1,8 @@
-node_modules
-functions
+node_modules/
+functions/
 public/model.js
+package-lock.json
+webpack.config.js
+app.yaml
+5.0.0-beta.1
+.env
