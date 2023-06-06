@@ -12,9 +12,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const port = normalizePort(process.env.PORT || 8080);
+const port = normalisePort(process.env.PORT || 8080);
 const __filename = fileURLToPath(import.meta.url);
-
 
 app.use((req, res, next) => {
   const mimeType = mime.getType(req.path);
@@ -27,12 +26,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Enable Content Security Policy
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"],
-      imgSrc: ["'self'", "data:"], // Allow self and data URIs for images
+      defaultSrc: ["'self'", 'www.onewordgpt.app', 'onewordgpt.app'],
+      connectSrc: ["'self'", 'www.onewordgpt.app', 'onewordgpt.app', 'https://onewordgpt3.ue.r.appspot.com'],
+      imgSrc: ["'self'", "data:"],
     },
   })
 );
@@ -50,7 +49,7 @@ app.use(cors());
 //   res.sendFile(indexPath);
 // });
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // app.get('/index.css', (req, res) => {
 //   res.setHeader('Content-Type', 'text/css');
@@ -66,9 +65,10 @@ app.use(express.static('public'));
 //   res.sendFile(path.join(__dirname, '../images/chatgptLogo.jpg'));
 // });
 
-
 app.post("/answer", async (req, res) => {
   const { question } = req.body;
+
+  sanitiseInput(question);
 
   const answer = await getAnswer(question);
   res.status(200).send(JSON.stringify({ response: answer }));
@@ -80,8 +80,8 @@ app.listen(port, () => {
 
 export const handler = serverless(app);
 
-// Function to normalize a port value
-function normalizePort(val) {
+// Function to normalise a port value
+function normalisePort(val) {
   const port = parseInt(val, 10); // Parse the port value as an integer
 
   if (isNaN(port)) {
@@ -95,4 +95,15 @@ function normalizePort(val) {
   }
 
   return false; // Invalid port value
+}
+
+function sanitiseInput(input) {
+  // Remove leading and trailing white spaces
+  const sanitisedInput = input.trim();
+
+  // Remove HTML tags
+  const sanitisedText = sanitisedInput.replace(/<[^>]+>/g, "");
+
+  // Return the sanitized input
+  return sanitisedText;
 }

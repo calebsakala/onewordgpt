@@ -7,7 +7,12 @@ export async function getAnswer(prompt) {
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
-      messages: [{role: "user", content: `Respond to the following prompt in only one word, as truthfully as possible: '${prompt}'`}],
+      messages: [
+        {
+          role: "user",
+          content: `Respond to the following prompt in only one word, as truthfully as possible: '${prompt}'`,
+        },
+      ],
       max_tokens: 100,
       temperature: 0,
     }),
@@ -17,6 +22,6 @@ export async function getAnswer(prompt) {
 
   const gptResponse = data.choices[0].message.content;
 
-  if (gptResponse.split(' ').length > 5) return "Sorry :(";
-  if (gptResponse.split(' ').length < 5) return gptResponse;
+  if (gptResponse.split(" ").length > 5) return "Apologies.";
+  if (gptResponse.split(" ").length < 5) return gptResponse;
 }

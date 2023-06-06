@@ -3,17 +3,15 @@ import * as View from "./View.js";
 import * as config from "./config.js";
 
 async function generateResponse(responseArea, textBox, blinker, logo) {
-  config.text.textPosition = 0;
-  responseArea.textContent = "";
-  blinker.classList.add("active");
-
   const text = textBox.value.trim(); // Get the trimmed text from the textarea
 
   // if there is no text, simply return
   if (text.length === 0) return;
 
+  config.text.textPosition = 0;
   logo.style.opacity = 100;
-  responseArea.classList.add("active");
+  blinker.classList.add("active");
+  responseArea.textContent = "";
 
   const jsonData = JSON.stringify({ question: text }); // Output the text to the console or perform any desired operations with it
 
