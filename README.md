@@ -26,4 +26,8 @@ One-wordGPT is built using the following technologies:
 - Backend: Node.js, Express.js
 - OpenAI GPT-3.5-turbo API
 
+## Special Note
+
+Some functions necessary for implementing One-wordGPT have not been included in this repository for security purposes.
+
 Enjoy using One-wordGPT!
