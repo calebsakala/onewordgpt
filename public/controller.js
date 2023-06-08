@@ -1,23 +1,57 @@
 import * as model from "./model.js";
 import * as View from "./View.js";
-import * as config from "./config.js";
 
-async function generateResponse(responseArea, textBox, blinker, logo) {
-  const text = textBox.value.trim(); // Get the trimmed text from the textarea
+const state = model.state;
+const versionNumbers = ['One', 'Two', 'Three'];
 
+
+async function generateResponse(textBox) {
+  
+  const text = textBox.value.trim(); // Get the trimmed text from the textbox
+  
   // if there is no text, simply return
   if (text.length === 0) return;
 
-  config.text.textPosition = 0;
-  logo.style.opacity = 100;
-  blinker.classList.add("active");
-  responseArea.textContent = "";
+  // Otherwise, show the logos
+  state.userIcon.style.opacity = 1;
+  state.chatGPTLogo.style.opacity = 1;
+  
+  // Disable typing 
+  textBox.readOnly = true;
 
-  const jsonData = JSON.stringify({ question: text }); // Output the text to the console or perform any desired operations with it
+  // Start the blinker
+  state.blinker.classList.add("active");
+  
+  // Clear the responseArea
+  state.responseArea.textContent = "";
+
+  // Saving the user's prompt
+  state.promptArea.textContent = text;
+
+  // Preparing the Json Data for the API
+  const jsonData = JSON.stringify({ 
+    question: text,
+    limit: state.wordLimit, 
+  }); 
+
+  // Clearing the user's prompt
+  textBox.value = "";
 
   const { response } = await model.callGPT(jsonData);
 
-  View.typing(response, response.length);
+  // Store which version of One-wordGPT generated the response
+  state.responseArea.hasAttribute("data-version") 
+  ? state.responseArea.dataset.version = `${versionNumbers[state.wordLimit - 1]}`
+  : state.responseArea.setAttribute("data-version", `${versionNumbers[state.wordLimit - 1]}`);
+
+  // Typing like a typewriter
+  View.type(response, response.length, state);
 }
 
-View.createResponseListener(generateResponse);
+const init = function () {
+  View.initState(state);
+  View.listenForPrompts(generateResponse, state);
+}
+
+init();
+

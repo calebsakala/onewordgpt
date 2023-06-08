@@ -17,11 +17,21 @@
 <body>
   <div class="homescreen-logo--container"><img class="homescreen-logo" src="./images/chatgptLogoInvisible.png" alt="Image"></div>
   <section class="master--container">
-    <h1 class="title">One-wordGPT</h1>
+    <h1 class="title"> 
+      <select class="title-dropdown" name="page-title">
+        <option selected>One-wordGPT</option><option>Two-wordGPT</option><option>Three-wordGPT</option>
+      </select>
+    </h1>
     <div class="text-area--container">
       <textarea maxlength="200" placeholder="Get a one-word response from ChatGPT" class="question--textbox"></textarea>
       <div class="send-btn--container"><span class="material-symbols-outlined">send</span></div>
     </div>
+    <section class="prompt--section">
+      <img class="user-icon" src="images/user-icon.png" alt="Image">
+      <div class="response--container">
+        <p class="user-prompt"></p>
+      </div>
+    </section>
     <section class="response--section">
       <img class="chatgpt-logo" src="images/chatgptLogo.jpg" alt="Image">
       <div class="response--container">
