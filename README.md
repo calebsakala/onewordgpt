@@ -1,4 +1,4 @@
-# one-wordgpt
+# one-wordgpt (now discontinued)
 
 Welcome to One-wordGPT, a website powered by GPT-3.5-turbo that gives one-word responses to your questions. Visit [www.onewordgpt.app](https://www.onewordgpt.app) to try it out!
 
